@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group 'com.amt.crypto'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    maven{
+        url "http://localhost:8080/repository/internal/"
+    }
+}
+
+dependencies {
+    compile 'com.ibm.ws:runtime:6.1.0'
+    compile 'com.ibm:ws_runtime:1.0'
+    compile group: 'org.springframework', name: 'spring-context-support', version: '5.2.7.RELEASE'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
