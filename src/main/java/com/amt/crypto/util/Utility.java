@@ -59,9 +59,9 @@ public class Utility {
         return (new BASE64Encoder()).encode(cipherMessage);
     }
 
-    private String getCredentials(String alias) throws Exception {
+    public static String getCredentials(String keyName) throws Exception {
         HashMap map = new HashMap();
-        map.put("com.ibm.mapping.authDataAlias", alias);
+        map.put("com.ibm.mapping.authDataAlias", keyName);
         try {
             CallbackHandler callbackHandler = WSMappingCallbackHandlerFactory.getInstance().getCallbackHandler(map, null);
             LoginContext lc;
@@ -71,7 +71,6 @@ public class Utility {
                 javax.security.auth.Subject subject = lc.getSubject();
                 java.util.Set creds = subject.getPrivateCredentials();
                 PasswordCredential result = (javax.resource.spi.security.PasswordCredential) creds.toArray()[0];
-
                 return new String(result.getPassword());
             } catch (Exception e) {
                 e.printStackTrace();

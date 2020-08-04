@@ -1,5 +1,6 @@
 package com.amt.crypto.config;
 
+import com.amt.crypto.util.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -32,7 +33,7 @@ public class KeyPicker {
         if("prop".equalsIgnoreCase(keyPickerType)){
             return environment.getProperty(encryptionKeyName);
         } else if("wss".equalsIgnoreCase(keyPickerType)){
-            return null;
+            return Utility.getCredentials(encryptionKeyName);
         } else {
             throw new Exception("Please set key.picker.type value in property file.");
         }
